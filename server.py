@@ -42,7 +42,7 @@ def image_submit(): # Loads when the user submits the image.
 
     da_colors = ColorThief(da_path) # Getting the colors of the image using a path from "da_path" variable.
 
-    color_pallet = da_colors.get_palette(color_count=11) # Returning 5 most common colours in the image.
+    color_pallet = da_colors.get_palette(color_count=11) # Returning 10 most common colours in the image.
 
     return render_template("index.html", colors=color_pallet, da_image=da_path)
 
