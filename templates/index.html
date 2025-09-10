@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ColoRec</title>
+    <link href="../static/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+</head>
+<body>
+
+<!-- Background & animion & navbar & title -->
+  <div class="container-fluid">
+<!-- Background animtion-->
+    <div class="background">
+       <div class="cube"></div>
+       <div class="cube"></div>
+       <div class="cube"></div>
+    </div>
+<!-- header -->
+   <header>
+<!-- title & content -->
+      <section class="header-content">
+         <h1>ColoRec</h1>
+        <p>Upload the image and the website will recognize 3 most common colors of that image<br>
+        Click the button below to upload the image (PNG, JPG, JPEG)</p>
+
+          <form method="post" action="{{ url_for('image_submit') }}" enctype="multipart/form-data">
+
+        <input type="file" accept=".image/png, image/jpeg, image/jpg" name="da_image" required>
+
+              <button type="submit">Submit the file</button>
+
+          </form>
+
+          {% if da_image == "": %} <!-- Checking if the image has been inputted -->
+
+            <p>No image inputted</p> <!-- If not, then display a simple paragraph stating it. -->
+
+          {% else: %}
+
+            <img src="{{ da_image }}" alt="Input Image"> <!-- Else display the image. -->
+
+          {% endif %}
+
+          {% if colors == "": %} <!-- Same with the color pallet. But if the "colors" variable is empty - display nothing. -->
+
+          {% else: %}
+
+            <p>10 most common colors in the image are:
+
+                {% for da_color_pal in colors: %}
+
+                {{ da_color_pal }}
+
+                {% endfor %}
+
+            </p>
+
+          {% endif %}
+
+      </section>
+  </header>
+  </div>
+
+</body>
+</html>
